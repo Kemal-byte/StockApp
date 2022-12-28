@@ -3,8 +3,6 @@ import authReducer from "../features/authSlice";
 import storage from "redux-persist/lib/storage/"; // defaults to localStorage for web
 import { persistStore, persistReducer } from "redux-persist";
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -30,6 +28,7 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+  // By using this middleware we are preventing serializer problem.
   devTools: process.env.NODE_ENV !== "production",
 });
 
