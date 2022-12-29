@@ -5,11 +5,13 @@ import { axiosWithToken } from "../service/axiosInstance";
 
 const useStockCalls = () => {
   const dispatch = useDispatch();
-  const getStockData = async (arg) => {
+
+  //!------------- GET CALLS ----------------
+  const getStockData = async (url) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.get(`stock/${arg}/`);
-      dispatch(getSuccess({ data, arg }));
+      const { data } = await axiosWithToken.get(`stock/${url}/`);
+      dispatch(getSuccess({ data, url }));
       console.log(data);
     } catch (error) {
       dispatch(fetchFail());
