@@ -1,22 +1,26 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { getSuccess, fetchFail, fetchStart } from "../features/stockSlice";
+import { axiosWithToken } from "../service/axiosInstance";
 
 const useStockCalls = () => {
-  const getFirms = async () => {
-    const url = "firms";
-    const BASE_URL = "https://14191.fullstack.clarusway.com/";
+  const dispatch = useDispatch();
+  const getStockData = async (arg) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.get(`${BASE_URL}stock/firms/`, {
-        headers: { Authorization: `Token ${token}` },
-      });
-      dispatch(getSuccess({ data, url }));
+      const { data } = await axiosWithToken.get(`stock/${arg}/`);
+      dispatch(getSuccess({ data, arg }));
       console.log(data);
     } catch (error) {
       dispatch(fetchFail());
       console.log(error.message);
     }
   };
-  return <div>useStockCalls</div>;
+  const getFirms = () => getStockData("firms");
+  const getSales = () => getStockData("sales");
+  const getBrands = () => getStockData("brands");
+
+  return { getFirms, getSales, getBrands };
 };
 
 export default useStockCalls;
