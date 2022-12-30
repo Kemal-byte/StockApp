@@ -26,14 +26,39 @@ const useStockCalls = () => {
   const deleteStockData = async (url, id) => {
     try {
       await axiosWithToken.delete(`stock/${url}/${id}/`);
-      //? After deleting the stock we are sending a request to receive the updated stock data.
+      //? After deleting the stock we are sending a request to receive the updated stock data
       getStockData(url);
     } catch (error) {
       console.log(error.message);
     }
   };
   const deleteFirm = (id) => deleteStockData("firms", id);
-  return { getFirms, getSales, getBrands, deleteFirm };
+
+  //!------------- POST CALLS ----------------
+  const PostStockData = async (info, url) => {
+    try {
+      await axiosWithToken.post(`stock/${url}/`, info);
+      //? With axios post you need to specify the url and the information you want to send. it takes 2 parameters
+      //? axios.post(url, info)
+      getStockData(url);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const PostFirm = (info) => PostStockData(info, "firms");
+
+  //!------------- PUT CALLS ----------------
+  const PutStockData = async (info, url) => {
+    try {
+      await axiosWithToken.put(`stock/${url}/${info.id}/`, info);
+      getStockData(url);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const PutFirm = (info) => PutStockData(info, "firms");
+
+  return { getFirms, getSales, getBrands, deleteFirm, PostFirm, PutFirm };
 };
 
 export default useStockCalls;

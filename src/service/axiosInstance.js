@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 const escapedToken = JSON.parse(localStorage.getItem("persist:root"))?.token;
 const token = escapedToken && JSON.parse(escapedToken);

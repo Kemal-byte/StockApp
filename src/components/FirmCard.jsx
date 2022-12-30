@@ -10,14 +10,21 @@ import EditIcon from "@mui/icons-material/Edit";
 import { btnHoverStyle, flex } from "../styles/globalStyle";
 import useStockCalls from "../hooks/useStockCalls";
 
-export default function FirmCard({ firm }) {
+export default function FirmCard({ firm, setOpen, setInfo }) {
   const { deleteFirm } = useStockCalls();
+
+  function handleEdit() {
+    setOpen(true);
+    setInfo(firm);
+  }
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         alt="green iguana"
-        height="140"
+        height="325"
+        width="250"
+        sx={{ p: 1, objectFit: "contain" }}
         image={firm?.image}
       />
       <CardContent>
@@ -29,7 +36,7 @@ export default function FirmCard({ firm }) {
         </Typography>
       </CardContent>
       <CardActions sx={flex}>
-        <EditIcon sx={btnHoverStyle} />
+        <EditIcon sx={btnHoverStyle} onClick={handleEdit} />
         <DeleteOutlineIcon
           sx={btnHoverStyle}
           onClick={() => deleteFirm(firm?.id)}
