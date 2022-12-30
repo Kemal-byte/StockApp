@@ -6,7 +6,7 @@ import { flexCenter, modalStyle } from "../../styles/globalStyle";
 import { TextField } from "@mui/material";
 import useStockCalls from "../../hooks/useStockCalls";
 
-export default function FirmModal({ open, setOpen, info, setInfo }) {
+export default function ProductModule({ open, setOpen, info, setInfo }) {
   const { PostFirm, PutFirm } = useStockCalls();
   function handleChange(e) {
     const { name, value } = e.target;
