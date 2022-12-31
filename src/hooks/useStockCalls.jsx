@@ -35,6 +35,9 @@ const useStockCalls = () => {
 
   const getProCatBrands = async () => {
     dispatch(fetchStart());
+    // By calling them under Promise all we are calling them at the same time and waiting them to be resolved.
+    // If we called thoes individually then they would need to wait b4 others resolve. This method calls all of
+    // them concurrently.
     try {
       const [products, categories, brands] = await Promise.all([
         axiosWithToken.get("stock/products/"),
