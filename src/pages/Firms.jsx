@@ -3,7 +3,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import FirmCard from "../components/FirmCard";
-import FirmModal from "../components/models/FirmModel";
+import FirmModal from "../components/modals/FirmModel";
 import useStockCalls from "../hooks/useStockCalls";
 // import { useDispatch, useSelector } from "react-redux";
 
