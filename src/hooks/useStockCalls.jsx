@@ -68,12 +68,12 @@ const useStockCalls = () => {
         ]);
       dispatch(
         getAllStockSuccess([
-          purchases.data,
-          firms.data,
-          brands.data,
-          sales.data,
-          products.data,
-          categories.data,
+          purchases?.data,
+          firms?.data,
+          brands?.data,
+          sales?.data,
+          products?.data,
+          categories?.data,
         ])
       );
     } catch (err) {
